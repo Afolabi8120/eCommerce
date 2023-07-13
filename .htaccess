@@ -1,0 +1,13 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+# NC makes the rule non case sensitive
+# L makes this the last rule that this specific condition will match
+
+# Rewrite for edit_category.php?id=xxxx
+RewriteRule ^edit_category/([0-9]+) edit_category.php?id=$1 [NC,L]
+
+

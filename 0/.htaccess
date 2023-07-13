@@ -1,0 +1,15 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+# NC makes the rule non case sensitive
+# L makes this the last rule that this specific condition will match
+
+RewriteRule ^edit_category/([0-9]+) edit_category.php?id=$1 [NC,L]
+RewriteRule ^edit_product/([0-9]+) edit_product.php?id=$1 [NC,L]
+RewriteRule ^product-details/([0-9]+) product-details.php?id=$1 [NC,L]
+RewriteRule ^view-order/([0-9A-Za-z]+) view-order.php?id=$1 [NC,L]
+
+
