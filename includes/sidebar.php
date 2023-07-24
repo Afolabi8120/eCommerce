@@ -34,6 +34,10 @@
              <a href="profile" class="nav-link"><i class="fa fa-user-circle"></i></a>
            </li>
 
+           <li class="nav-item" title="Reviews">
+             <a href="review" class="nav-link"><i class="fa fa-star"></i></a>
+           </li>
+
            <li class="nav-item" title="Store Details">
              <a href="store" class="nav-link"><i class="fa fa-credit-card"></i></a>
            </li>

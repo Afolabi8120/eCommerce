@@ -2,11 +2,11 @@
   include('../core/init.php');
   $pageTitle = "Orders";
 
-  if(isset($_SESSION['email']) AND !empty($_SESSION['email']))
+  if(isset($_SESSION['admin']) AND !empty($_SESSION['admin']))
   {
 
-    $getCustomer = $user->getCustomerData($_SESSION['email']);
-    $getSession = $user->getCustomerData($_SESSION['email']);
+    $getCustomer = $user->getCustomerData($_SESSION['admin']);
+    $getSession = $user->getCustomerData($_SESSION['admin']);
 
     if($_SESSION['session_id'] !== $getSession->session){
       header('location: ../index');

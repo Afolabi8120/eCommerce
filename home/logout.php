@@ -1,8 +1,7 @@
 <?php
     include('../core/init.php');
 
-    $_SESSION[] = array();
-    session_destroy();
+    unset($_SESSION['email']);
     $_SESSION['SuccessMessage'] = "Logout Successful";
     header('location: ../index');
 

@@ -1,6 +1,6 @@
 <?php
-  require('../core/validate/customer.php');
-  $pageTitle = "Customer List";
+  require('../core/validate/product.php');
+  $pageTitle = "Reviews";
 
   if(isset($_SESSION['admin']) AND !empty($_SESSION['admin']))
   {
@@ -10,9 +10,8 @@
 
     if($_SESSION['session_id'] !== $getSession->session){
       header('location: ../index');
-    }else{
-      
     }
+
   }else{
     header('location: ../index');
   }
@@ -48,7 +47,7 @@
                   <ol class="breadcrumb mb-0 p-0 align-items-center">
                     <li class="breadcrumb-item"><a href="javascript:;"><ion-icon name="home-outline"></ion-icon></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Customer's List</li>
+                    <li class="breadcrumb-item active" aria-current="page">Reviews</li>
                   </ol>
                 </nav>
               </div>
@@ -56,14 +55,14 @@
             <!--end breadcrumb-->
 
             <div class="row">
+              <?php
+                echo ErrorMessage();
+                echo SuccessMessage();
+              ?>
               <div class="col-md-12">
-                <?php
-                  echo ErrorMessage();
-                  echo SuccessMessage();
-                ?>
                 <div class="card">
                   <div class="card-header">
-                    Customer's List
+                    Reviews
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -71,37 +70,45 @@
                         <thead>
                           <tr>
                             <th>S/N</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone No.</th>
-                            <th>Status</th>
+                            <th>Product Name</th>
+                            <th>Customer Name</th>
+                            <th>Review</th>
+                            <th>Date Review</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <?php $i = 1; foreach($admin->selectAll('tblcustomer','usertype','customer') as $fetchCustomer): ?>
-                          <tr>
+                            <?php $i = 1; foreach($admin->selectAll('tblreview','status','0') as $getReview): ?>
+                          <tr class="small">
                             <td><?= $i++; ?></td>
-                            <td><?= ucwords($fetchCustomer->surname . " " . $fetchCustomer->other_name); ?></td>
-                            <td><?= $fetchCustomer->email; ?></td>
-                            <td><?= $fetchCustomer->phone; ?></td>
                             <td>
-                              <?php if($fetchCustomer->status == "active"): ?>
-                                <span class="badge bg-success">Active</span>
-                              <?php elseif($fetchCustomer->status == "in-active"): ?>
-                                <span class="badge bg-danger">In-active</span>
-                              <?php endif; ?>
+                              <?php
+                                $pName = $admin->get('tblproducts','id',$getReview->product_id);
+                                #var_dump($pName);exit();
+                                echo ucwords($pName->product_name);
+                              ?>
+                                
                             </td>
                             <td>
-                              <?php if($fetchCustomer->status == "active"): ?>
+                              <?php
+                                $cusName = $admin->get('tblcustomer','id',$getReview->customer_id);
+                                echo ucwords($cusName->surname) . " " . ucwords($cusName->other_name);
+                              ?>
+                            </td>
+                            <td><span class="small pre"><?= $getReview->review; ?></span></td>
+                            <td><span class="badge bg-dark"><?= $getReview->date_reviewed; ?></span></td>
+                            <td>
+                              <?php if($getReview->status == "0"): ?>
                               <form method="POST">
-                                <input type="hidden" class="form-control" name="customer_id" value="<?= $fetchCustomer->id; ?>" readonly>
-                                <input type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Disable this Customer Account?')" value="Disable" name="btnDisableCustomer">
+                                <input type="hidden" class="form-control" name="review_id" value="<?= $getReview->id; ?>" readonly>
+                                <input type="submit" class="btn btn-success btn-sm" onclick="return confirm('Approve this Review?')" value="Approve" name="btnApproveReview">
+                                <input type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this Review?')" value="Delete" name="btnDeleteReview">
                               </form>
-                              <?php elseif($fetchCustomer->status == "in-active"): ?>
+                              <?php elseif($getReview->status == "1"): ?>
                               <form method="POST">
-                                <input type="hidden" class="form-control" name="customer_id" value="<?= $fetchCustomer->id; ?>" readonly>
-                                <input type="submit" class="btn btn-success btn-sm" onclick="return confirm('Enable this Customer Account?')" value="Enable" name="btnEnableCustomer">
+                                <input type="hidden" class="form-control" name="review_id" value="<?= $getReview->id; ?>" readonly>
+                                <input type="submit" class="btn btn-warning btn-sm" onclick="return confirm('Reject this Review?')" value="Reject" name="btnRejectReview">
+                                <input type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this Review?')" value="Delete" name="btnDeleteReview">
                               </form>
                               <?php endif; ?>
                             </td>

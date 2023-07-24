@@ -220,6 +220,57 @@
 
         }
 
+    }elseif(isset($_POST['btnApproveReview']) && !empty($_POST['btnApproveReview'])){ // submit review
+        
+        $review_id = $_POST['review_id'];
+
+        // Form Validation 
+        if(empty($review_id)){
+            $_SESSION['ErrorMessage'] = "All fields are Required";
+        }else{
+
+            // validating our data
+            $review_id = $admin->validateInput($review_id);
+
+            if($product->approveReview('tblreview',$review_id) === true){
+                $_SESSION['SuccessMessage'] =  "Review Approved";
+            }else{
+                $_SESSION['ErrorMessage'] =  "Failed To Approve Review";
+            }
+        }
+
+    }elseif(isset($_POST['btnRejectReview']) && !empty($_POST['btnRejectReview'])){ // submit review
+        
+        $review_id = $_POST['review_id'];
+
+        // Form Validation 
+        if(empty($review_id)){
+            $_SESSION['ErrorMessage'] = "All fields are Required";
+        }else{
+
+            // validating our data
+            $review_id = $admin->validateInput($review_id);
+
+            if($product->rejectReview('tblreview',$review_id) === true){
+                $_SESSION['SuccessMessage'] =  "Review Rejected";
+            }else{
+                $_SESSION['ErrorMessage'] =  "Failed To Reject Review";
+            }
+        }
+
+    }elseif(isset($_POST['btnDeleteReview']) && !empty($_POST['btnDeleteReview'])){ // submit review
+        
+        $review_id = $_POST['review_id'];
+
+        // validating our data
+        $review_id = $admin->validateInput($review_id);
+
+        if($admin->delete('tblreview','id',$review_id) === true){
+            $_SESSION['SuccessMessage'] =  "Review Deleted";
+        }else{
+            $_SESSION['ErrorMessage'] =  "Failed To Delete Review";
+        }
+
     }
 
 

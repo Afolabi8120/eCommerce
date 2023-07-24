@@ -175,7 +175,7 @@
                         <li class="nav-item" role="presentation">
                           <a class="nav-link active" data-bs-toggle="tab" href="#reviews" role="tab" aria-selected="false">
                             <div class="d-flex align-items-center">
-                              <div class="tab-title text-uppercase fw-500">(<?= $admin->count('tblreview','product_id',$product_id); ?>) Reviews</div>
+                              <div class="tab-title text-uppercase fw-500">(<?= $product->reviewCount($product_id); ?>) Reviews</div>
                             </div>
                           </a>
                         </li>
@@ -188,7 +188,7 @@
                           <div class="row">
                             <div class="col col-lg-8">
                               <div class="product-review">
-                                <p class="mb-4 fw-bold small"><?= $admin->count('tblreview','product_id',$product_id); ?> Reviews For This Product</p>
+                                <p class="mb-4 fw-bold small"><?= $product->reviewCount($product_id); ?> Reviews For This Product</p>
                                 <div class="review-list">
                                   <!-- Customer Review Display Start -->
                                   <?php foreach($product->fetchAllReview($product_id) as $fetchReview): ?>

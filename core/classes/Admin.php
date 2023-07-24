@@ -113,6 +113,13 @@
 			return true;
 		}
 
+		public function delete($table,$column,$value){
+			$stmt = $this->pdo->prepare("DELETE FROM `$table` WHERE `$column`= :value ");
+			$stmt->bindParam(":value", $value, PDO::PARAM_STR);
+			$stmt->execute();
+			return true;
+		}
+
 		public function enable($id,$table,$value){
 			$stmt = $this->pdo->prepare("UPDATE `$table` SET status = 'active' WHERE id= '$id' ");
 			$stmt->execute();

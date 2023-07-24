@@ -102,11 +102,35 @@
 			return $stmt->fetchAll(PDO::FETCH_OBJ);
 		}
 
+		public function reviewCount($value){
+			$stmt = $this->pdo->prepare("SELECT COUNT(`product_id`) FROM `tblreview` WHERE `product_id` = :value AND status = '1' ");
+			$stmt->bindParam(":value", $value, PDO::PARAM_STR);
+			$stmt->execute();
+
+			$count = $stmt->fetchColumn();
+
+			return $count;
+		}
+
 		public function fetchAllReview($product_id){
-			$stmt = $this->pdo->prepare("SELECT * FROM tblreview AS r INNER JOIN tblcustomer AS c ON c.id = r.customer_id WHERE r.product_id = :product_id ");
+			$stmt = $this->pdo->prepare("SELECT * FROM tblreview AS r INNER JOIN tblcustomer AS c ON c.id = r.customer_id WHERE r.product_id = :product_id AND r.status = '1' ");
 			$stmt->bindParam(":product_id", $product_id, PDO::PARAM_STR);
 			$stmt->execute();
 			return $stmt->fetchAll(PDO::FETCH_OBJ);
+		}
+
+		public function approveReview($table,$id){
+			$stmt = $this->pdo->prepare("UPDATE `$table` SET status = '1' WHERE id = :id ");
+			$stmt->bindParam(":id", $id, PDO::PARAM_STR);
+			$stmt->execute();
+			return true;
+		}
+
+		public function rejectReview($table,$id){
+			$stmt = $this->pdo->prepare("UPDATE `$table` SET status = '0' WHERE id = :id ");
+			$stmt->bindParam(":id", $id, PDO::PARAM_STR);
+			$stmt->execute();
+			return true;
 		}
 
 

@@ -89,8 +89,8 @@
                         }
                     }elseif($getCustomerData->usertype == 'admin'){
                         $_SESSION['session_id'] = session_id();
-                        $_SESSION['email'] = $getCustomerData->email;
-                        $user->updateSession($_SESSION['email'], $_SESSION['session_id']);
+                        $_SESSION['admin'] = $getCustomerData->email;
+                        $user->updateSession($_SESSION['admin'], $_SESSION['session_id']);
                         header('location: 0/dashboard'); 
                     }
 
