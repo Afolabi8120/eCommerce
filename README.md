@@ -17,3 +17,16 @@ This is just a personal project i'm working on to test my PHP skills
 
 ### Empty Cart
 ![Empty Cart](https://github.com/Afolabi8120/eCommerce/assets/46169907/47afba0d-08e8-4cfd-9939-db3ccb905f41)
+
+### Mobile View of the Login Page
+![Mobile Login](https://github.com/Afolabi8120/eCommerce/assets/46169907/bd773640-4480-453d-9cf9-310a7da4f61f)
+
+### Mobile View of the Dashboard
+![Mobile View Dashboard](https://github.com/Afolabi8120/eCommerce/assets/46169907/4c5ecb72-7aca-4e02-8088-7e7503b5f1e1)
+
+### Mobile View of The profile page
+![Mobile View Profile](https://github.com/Afolabi8120/eCommerce/assets/46169907/4851b2e6-7a54-4c06-ad9b-3f42c527c9e6)
+![Mobile View Profile 2](https://github.com/Afolabi8120/eCommerce/assets/46169907/cfb9bee2-d253-4edc-931e-9b75f3a61de0)
+
+
+
