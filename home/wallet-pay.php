@@ -106,11 +106,10 @@
                                   <div class="p-3 border rounded">
                                     <div class="mb-3">
                                       <p class="mb-3 text-danger small"><strong>Note:</strong> The order amount would be deducted from your wallet balance, please note that this transaction cannot be reversed.</p>
-                                      <p>Wallet Balance:<span class="mb-0 text-dark h5 fw-bold"> ₦ <?= $getCustomer->balance; ?></span></p>
+                                      <p>Wallet Balance:<span class="mb-0 text-dark h5 fw-bold"> ₦ <?= number_format($getCustomer->balance, 00); ?></span></p>
                                       <form class="form-body row g-3" method="POST">
                                         <div class="col-12">
                                           <label for="inputPin" class="form-label">Pin</label>
-                                          <input type="hidden" class="form-control" name="amount" value="<?= $order->getCartSum($getCustomer->id); ?>" id="inputPin" readonly required>
                                           <input type="password" class="form-control" autocomplete="off" name="pin" id="inputPin" placeholder="****" maxlength="4" required>
                                         </div>
                                         <div class="col-12">

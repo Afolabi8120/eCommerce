@@ -139,37 +139,25 @@
             $customer = $user->getCustomerData($_SESSION['email']);
             $fetched_pin = $customer->pin; 
 
-            $output = substr(md5($old_pin), 0, 6); // encrypt the old pin
+            $output = strtoupper(substr(md5($old_pin), 0, 6)); // encrypt the old pin
 
-            if($fetched_pin == ""){ // if pin column is empty
+            if($output != $fetched_pin){
+                $_SESSION['ErrorMessage'] = "Old Pin is Invalid";
+                return;
+            }
+            else{
 
-                $output = substr(md5($new_pin), 0, 6);
-                $newPin = $output;
+                $output_newpin = substr(md5($new_pin), 0, 6); // encrypt the new pin
+                $newPin = strtoupper($output_newpin); // convert to upper case
 
                 if($user->updatePin($customer->id,$newPin) === true){
                     $_SESSION['SuccessMessage'] = "Pin Set Successfully";
                 }else{
                     $_SESSION['ErrorMessage'] = "Failed To Set Pin";
                 }
-            }        
-            elseif($fetched_pin != ""){
-                if($old_pin != $fetched_pin){
-                    $_SESSION['ErrorMessage'] = "Old Pin is Invalid";
-                    return;
-                }
-                else{
-                    $output = substr(md5($new_pin), 0, 6);
-                    $newPin = strtoupper($output);
-
-                    if($user->updatePin($customer->id,$newPin) === true){
-                        $_SESSION['SuccessMessage'] = "Pin Set Successfully";
-                    }else{
-                        $_SESSION['ErrorMessage'] = "Failed To Set Pin";
-                    }
-                }
             }
         }
-    }else if(isset($_POST['btnSetPin2']) AND !empty($_POST['btnSetPin2'])){ // password update
+    }else if(isset($_POST['btnSetPin2']) AND !empty($_POST['btnSetPin2'])){ // setting pin for the first time
         // passing data received from user into variable
         $new_pin = $_POST['new_pin'];
         $c_pin = $_POST['c_pin'];

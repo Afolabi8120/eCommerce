@@ -58,6 +58,10 @@
              <a href="transactions" class="nav-link"><i class="fa fa-receipt"></i></a>
            </li>
 
+           <li class="nav-item" title="Wallet Funding History">
+             <a href="wallet-record" class="nav-link"><i class="fa fa-receipt"></i></a>
+           </li>
+
            <li class="nav-item" title="Profile">
              <a href="profile" class="nav-link"><i class="fa fa-user-circle"></i></a>
            </li>

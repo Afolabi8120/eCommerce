@@ -21,7 +21,7 @@
                   <div class="d-flex align-items-center">
                     <div class="">
                       <p class="mb-1">Wallet Balance</p>
-                      <h4 class="mb-0 text-info">₦ <?= $getCustomer->balance; ?></h4>
+                      <h4 class="mb-0 text-info">₦ <?= number_format($getCustomer->balance, 00); ?></h4>
                     </div>
                     <div class="ms-auto text-info fs-2">
                       <i class="fa fa-money-check-alt"></i>

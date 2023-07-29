@@ -1,18 +1,25 @@
 <?php
 
-    include_once('../core/init.php');
+    require('../core/init.php');
+
+    // if(!isset($_SESSION['email']))
+    // {
+    //   header('location: fund-wallet');
+    //   exit();
+    // }
 
     #session_start();
     $getCustomer = $user->getCustomerData($_SESSION['email']);
-    $getSession = $user->getCustomerData($_SESSION['email']);
 
-    $email = $getUserData->email;
-    $booking_no = $_SESSION['booking_no'];
+    $email = $getCustomer->email;
+    $customer_id = $getCustomer->id;
 
     $curl = curl_init();
 
     $ref = $_GET['reference'];
     $ref = rawurlencode($ref);
+
+    $transaction_code = $ref; // transaction code
 
     if($ref == null || $ref == '') {
         header("Location:javascript://history.go(-1)");
@@ -36,13 +43,11 @@
     $response = curl_exec($curl);
 
     $err = curl_error($curl);
-    #curl_close($curl);
     
     if ($err) {
       die("cURL Error #: ") . $err;
     } 
 
-    //var_dump($response);
     $tranx = json_decode($response);
 
     if(!$tranx->status){
@@ -50,18 +55,22 @@
     }
 
     if('success' == $tranx->data->status){
-      #$fetch = $globalclass->printReceipt($email,$booking_no);
-      $fetch = $globalclass->selectByOneColumn('booking_no','tblbooking',$booking_no);
 
-      if($globalclass->savePayment($email,$ref,$booking_no,$fetch->price,1) === true){
-        if($globalclass->updateBooking($booking_no) === true){
-          header('location: thank-you');
+      $amount = substr($tranx->data->amount, 0, -2);
+      $initial_amount = round($amount - (95 / 100));
+
+      //var_dump($amount);exit();
+
+      if($user->addWalletBalance($customer_id,$transaction_code,"Wallet Funding",$amount,$amount) === true){
+        if($user->addToUserBalance($customer_id,$amount) === true){
+          $_SESSION['SuccessMessage'] = "Your wallet balance has been updated";
+          header('location: wallet-record');
         }
       }
       echo "Success";
     }else{
       echo "<script>alert('Transaction not found')</script>";
-      header('location: dashboard');
+      header('refresh:3;url=dashboard');
     }
 
 ?>

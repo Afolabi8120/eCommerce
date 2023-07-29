@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 24, 2023 at 10:01 PM
+-- Generation Time: Jul 29, 2023 at 05:22 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.4
 
@@ -76,8 +76,8 @@ CREATE TABLE `tblcustomer` (
 --
 
 INSERT INTO `tblcustomer` (`id`, `surname`, `other_name`, `email`, `phone`, `balance`, `pin`, `gender`, `state`, `address`, `status`, `usertype`, `password`, `picture`, `session`, `auth`) VALUES
-(2, 'afolabi', 'temidayo timothy', 'afolabi8120@gmail.com', '0809094966900', 0.00, '4d8556', 'Male', 'Osun State', 'No. 1, Michael O Babatunde Ave, off Jankara Road, Ijaiye, Ojokoro, Lagos State.', 'active', 'admin', '827ccb0eea8a45&%Cdfgak1Waq7', 'IMG-2023-04-2827256412.jpg', 'p513fpp2cb6crhm3lciv5m1jkr', 'on'),
-(3, 'albert', 'faith segun', 'albert@gmail.com', '08090949660', 228300.00, '4d8556', 'Male', 'Abia State', 'Tebun Fagbemi Street, off Nureni Yusuff Rd, Lagos State', 'active', 'customer', '827ccb0eea8a45&%Cdfgak1Waq7', 'IMG-2023-04-29428efa31.jpg', 'p513fpp2cb6crhm3lciv5m1jkr', 'on'),
+(2, 'afolabi', 'temidayo timothy', 'afolabi8120@gmail.com', '0809094966900', 0.00, '4d8556', 'Male', 'Osun State', 'No. 1, Michael O Babatunde Ave, off Jankara Road, Ijaiye, Ojokoro, Lagos State.', 'active', 'admin', '827ccb0eea8a45&%Cdfgak1Waq7', 'IMG-2023-04-2827256412.jpg', 'de6gvvueea77gloq1nhdv7m54c', 'on'),
+(3, 'albert', 'faith segun', 'albert@gmail.com', '08090949660', 270596.00, '4D8556', 'Male', 'Abia State', 'Tebun Fagbemi Street, off Nureni Yusuff Rd, Lagos State', 'active', 'customer', '827ccb0eea8a45&%Cdfgak1Waq7', 'IMG-2023-04-29428efa31.jpg', 'de6gvvueea77gloq1nhdv7m54c', 'on'),
 (4, 'idowu', 'emmanuel tobiloba', 'emmytromal@protonmail.com', '', 0.00, '', '', '', '', 'active', 'customer', '8875ded0f79345&%Cdfgak1Waq7', '', 'a0l342q6blktrdf9nijdfcfohi', 'on'),
 (11, 'bakare', 'abdullahi', 'ablinks@gmail.com', '08125488456', 3000.00, '865bed', 'Male', 'Lagos State', '28, Akogun street, ojo, lagos', 'active', 'customer', '827ccb0eea8a45&%Cdfgak1Waq7', '', 'md28hluo1fr9qs4k2q01c0q6g7', 'on'),
 (13, 'test', 'test', 'test@gmail.com', '', 10000.00, '95F687', '', '', '', 'active', 'customer', '827ccb0eea8a45&%Cdfgak1Waq7', '', '471o675fjc3i094qgjj43pgarq', 'off');
@@ -112,7 +112,8 @@ INSERT INTO `tblorder` (`id`, `invoiceno`, `customer_id`, `product_id`, `price`,
 (42, '202305176464DFD14955A1684332497', 3, 35, 2700.00, 2, 5400.00, 1),
 (43, '2023072464BE4C11960D81690192913', 3, 32, 3000.00, 2, 6000.00, 1),
 (44, '2023072464BE4C11960D81690192913', 3, 33, 3800.00, 1, 3800.00, 1),
-(45, '2023072464BE4C11960D81690192913', 3, 35, 2700.00, 1, 2700.00, 1);
+(45, '2023072464BE4C11960D81690192913', 3, 35, 2700.00, 1, 2700.00, 1),
+(50, '2023072964C51407C552C1690637319', 3, 35, 2700.00, 1, 2700.00, 1);
 
 -- --------------------------------------------------------
 
@@ -147,7 +148,9 @@ INSERT INTO `tblorder_payment` (`id`, `invoiceno`, `customer_id`, `surname`, `ot
 (32, '20230512645E660A1A9C31683908106', 3, 'albert', 'faith segun', 'albert@gmail.com', '08090949660', 'Male', 'Abia State', 'Tebun Fagbemi Street, off Nureni Yusuff Rd, Lagos State', 9500.00, 0, '12 May 2023 5:15 PM', '5:15 PM', 1),
 (33, '202305176464DFD14955A1684332497', 3, 'albert', 'faith segun', 'albert@gmail.com', '08090949660', 'Male', 'Abia State', 'Tebun Fagbemi Street, off Nureni Yusuff Rd, Lagos State', 9200.00, 0, '17 May 2023 3:08 PM', '3:08 PM', 1),
 (34, '2023072464BE4C11960D81690192913', 3, 'albert', 'faith segun', 'albert@gmail.com', '08090949660', 'Male', 'Abia State', 'Tebun Fagbemi Street, off Nureni Yusuff Rd, Lagos State', 12500.00, 0, '24 Jul 2023 11:01 AM', '11:01 AM', 1),
-(35, '2023072464BE4C11960D81690192913', 3, 'albert', 'faith segun', 'albert@gmail.com', '08090949660', 'Male', 'Abia State', 'Tebun Fagbemi Street, off Nureni Yusuff Rd, Lagos State', 12500.00, 0, '24 Jul 2023 11:01 AM', '11:01 AM', 1);
+(35, '2023072464BE4C11960D81690192913', 3, 'albert', 'faith segun', 'albert@gmail.com', '08090949660', 'Male', 'Abia State', 'Tebun Fagbemi Street, off Nureni Yusuff Rd, Lagos State', 12500.00, 0, '24 Jul 2023 11:01 AM', '11:01 AM', 1),
+(36, '2023072964C51407C552C1690637319', 3, 'albert', 'faith segun', 'albert@gmail.com', '08090949660', 'Male', 'Abia State', 'Tebun Fagbemi Street, off Nureni Yusuff Rd, Lagos State', 2700.00, 0, '29 Jul 2023 2:28 PM', '2:28 PM', 1),
+(37, '2023072964C51407C552C1690637319', 3, 'albert', 'faith segun', 'albert@gmail.com', '08090949660', 'Male', 'Abia State', 'Tebun Fagbemi Street, off Nureni Yusuff Rd, Lagos State', 2700.00, 0, '29 Jul 2023 2:28 PM', '2:28 PM', 1);
 
 -- --------------------------------------------------------
 
@@ -179,7 +182,7 @@ INSERT INTO `tblproducts` (`id`, `product_name`, `sku`, `new_price`, `old_price`
 (32, 'mens mini clothe', 'PRO-378829', 3000.00, 0.00, 'Just a sample clothe description', 3, 38, 1, 'PRO2023042908D92D.png', '2023-04-29 19:08:53', '29 Apr 2023 10:45 PM'),
 (33, 'old men hat', 'PRO-378029', 3800.00, 4500.00, 'A description of a cap', 1, 31, 1, 'PRO20230429383901.png', '2023-04-29 19:38:33', '29 Apr 2023 10:46 PM'),
 (34, 'female high heels', 'PRO-092928', 6500.00, 7000.00, 'A sample female heels', 4, 8, 1, 'PRO202304295994B0.png', '2023-04-29 19:59:22', '29 Apr 2023 10:46 PM'),
-(35, 'mens free plain tee shirt', 'PRO-2982828', 2700.00, 3200.00, 'Just a sample description of mens free plain tee shirt', 3, 48, 1, 'PRO2023043049969E.png', '2023-04-30 14:49:39', '30 Apr 2023 6:52 PM'),
+(35, 'mens free plain tee shirt', 'PRO-2982828', 2700.00, 3200.00, 'Just a sample description of mens free plain tee shirt', 3, 47, 1, 'PRO2023043049969E.png', '2023-04-30 14:49:39', '30 Apr 2023 6:52 PM'),
 (36, 'mens plain tee shirt', 'PRO-09228', 3800.00, 4000.00, 'This is just a sample description', 3, 41, 1, 'PRO202304302177A8.png', '2023-04-30 15:21:52', '12 May 2023 5:06 PM');
 
 -- --------------------------------------------------------
@@ -267,7 +270,31 @@ INSERT INTO `tbltransaction` (`id`, `customer_id`, `invoiceno`, `service_type`, 
 (14, 3, '20230503645224192589F1683104793', 'Wallet Balance', 'Dear Albert, 3000.00 has been deducted from your wallet balance', 3000.00, 4000.00, 1000.00, '03 May 2023 10:06 AM'),
 (15, 3, '20230512645E660A1A9C31683908106', 'Wallet Balance', 'Dear Albert, 9500.00 has been deducted from your wallet balance', 9500.00, 12000.00, 2500.00, '12 May 2023 5:15 PM'),
 (16, 3, '202305176464DFD14955A1684332497', 'Wallet Balance', 'Dear Albert, 9200.00 has been deducted from your wallet balance', 9200.00, 250000.00, 240800.00, '17 May 2023 3:08 PM'),
-(17, 3, '2023072464BE4C11960D81690192913', 'Wallet Balance', 'Dear Albert, 12500.00 has been deducted from your wallet balance', 12500.00, 240800.00, 228300.00, '24 Jul 2023 11:01 AM');
+(17, 3, '2023072464BE4C11960D81690192913', 'Wallet Balance', 'Dear Albert, 12500.00 has been deducted from your wallet balance', 12500.00, 240800.00, 228300.00, '24 Jul 2023 11:01 AM'),
+(18, 3, '2023072964C51407C552C1690637319', 'Wallet Balance', 'Dear Albert, 2700.00 has been deducted from your wallet balance', 2700.00, 228300.00, 225600.00, '29 Jul 2023 2:28 PM');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblwallet_fund`
+--
+
+CREATE TABLE `tblwallet_fund` (
+  `id` int NOT NULL,
+  `customer_id` int NOT NULL,
+  `transaction_code` varchar(30) NOT NULL,
+  `service_type` varchar(20) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tblwallet_fund`
+--
+
+INSERT INTO `tblwallet_fund` (`id`, `customer_id`, `transaction_code`, `service_type`, `amount`, `total`, `date`) VALUES
+(7, 3, '202307295744B33D96', 'Wallet Funding', 10500.00, 10500.00, '2023-07-29 17:11:39');
 
 --
 -- Indexes for dumped tables
@@ -327,6 +354,12 @@ ALTER TABLE `tbltransaction`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tblwallet_fund`
+--
+ALTER TABLE `tblwallet_fund`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -346,13 +379,13 @@ ALTER TABLE `tblcustomer`
 -- AUTO_INCREMENT for table `tblorder`
 --
 ALTER TABLE `tblorder`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `tblorder_payment`
 --
 ALTER TABLE `tblorder_payment`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `tblproducts`
@@ -376,7 +409,13 @@ ALTER TABLE `tblreview`
 -- AUTO_INCREMENT for table `tbltransaction`
 --
 ALTER TABLE `tbltransaction`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `tblwallet_fund`
+--
+ALTER TABLE `tblwallet_fund`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

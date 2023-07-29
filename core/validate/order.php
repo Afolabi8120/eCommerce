@@ -198,7 +198,9 @@
         
     }elseif(isset($_POST['btnPayByWallet']) AND !empty($_POST['btnPayByWallet'])){ // payment using wallet balance
 
-        $amount = $_POST['amount'];
+        $customerData = $user->getCustomerData($_SESSION['email']); // getting the customer data
+
+        $amount = $order->getCartSum($customerData->id);
         $pin = $_POST['pin'];
         $cpin = $_POST['cpin'];
 
@@ -212,13 +214,11 @@
             // validating the amount
             $amount = $admin->validateInput($amount);
 
-            $customerData = $user->getCustomerData($_SESSION['email']);
-
             if($customerData->balance >= $amount){ // if balance is greater than the amount of item bought
 
                 $fetched_pin = $customerData->pin; // getting the users pin
 
-                $output = substr(md5($pin), 0, 6); // encrypting the users pin
+                $output = strtoupper(substr(md5($pin), 0, 6)); // encrypting the users pin
 
                 // generating invoice number
                 $num = date('Ymd').uniqid().time();

@@ -71,23 +71,23 @@
                                   <div class="p-3 border rounded">
                                     <div class="mb-3">
                                       <p class="mb-3 text-info small">
-                                          <strong>Note:</strong> 10% of the amount you want to fund your wallet with will be deducted from your account.
+                                          <strong>Note:</strong> 5% of the amount you want to fund your wallet with will be deducted from your account.
                                           <br>
                                           <span class="text-danger small">Minimum amount to deposit is 5,000 naira</span>
                                       </p>
-                                      <p>Wallet Balance:<span class="mb-0 text-dark h5 fw-bold"> ₦ <?= $getCustomer->balance; ?></span>
+                                      <p>Wallet Balance:<span class="mb-0 text-dark h5 fw-bold"> ₦ <?= number_format($getCustomer->balance, 00); ?></span>
                                       </p>
                                       <form class="form-body row g-3" method="POST">
                                         <div class="col-12">
                                           <label for="amount" class="form-label">Amount</label>
-                                          <input type="tel" class="form-control" onkeyup="getTotal()" name="amount" id="amount" placeholder="2000" required>
+                                          <input type="tel" class="form-control amount" onkeyup="getTotal()" name="amount" id="amount" placeholder="5000" required>
                                         </div>
                                         <div class="col-12">
                                           <label for="total" class="form-label">Total Amount</label>
-                                          <input type="text" class="form-control payamount" class="total" autocomplete="off" name="total" id="total" placeholder="3000" readonly required>
+                                          <input type="text" class="form-control total" autocomplete="off" name="total" id="total" placeholder="5000" readonly required>
                                         </div>
                                         <div class="col-12">
-                                          <a href="" type="button" data-type="payment" onclick="payWithPaystack('payamount', '<?= $getCustomer->email; ?>', '<?= $getCustomer->surname; ?>')" class="btn btn-md btn-primary">Proceed to Payment</a>
+                                          <a href="" type="button" data-type="payment" onclick="payWithPaystack('payamount', '<?= $getCustomer->email; ?>', '<?= $getCustomer->surname; ?>')" class="btn btn-md btn-primary payamount">Proceed to Payment</a>
                                           <a href="dashboard" class="btn btn-danger">Back </a>
                                         </div>
                                       </form>
@@ -113,5 +113,57 @@
          <!--end page content wrapper-->
 
   <?php include('../includes/footer.php'); ?>
+
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script>
+        $(document).ready(function() {
+            $(document).on('click', '.payamount', function(e) {
+                e.preventDefault();
+
+                var amount = $('.amount').val();
+                var total = $('.total').val();
+                var type = $(this).data('type');
+                var email = "<?= $getCustomer->email; ?>";
+                var last_name = "<?= $getCustomer->surname; ?>";
+                var first_name = "<?= $getCustomer->other_name; ?>";
+
+                if(amount < 5000){
+                    alert("Cannot proceed to add payment");
+                    return;
+                }
+
+
+                //alert(amount + ' ' + total + ' ' + type + ' ' + email + ' ' + last_name);
+
+                function payWithPaystack(type, email, first_name, last_name){
+
+                    var handler = PaystackPop.setup({
+                      key: "<?= PAYMENT_KEY; ?>",
+                      email: email,
+                      first_name: first_name,
+                      last_name: last_name,
+                      total: total,
+                      mobile: "<?= $getCustomer->phone; ?>",
+                      amount: (total) * 100,
+                      currency: 'NGN',
+                      ref: '<?= date('Ymd') . strtoupper(substr(sha1(uniqid().time()), 3, 10)); ?>',
+                      callback: function(response){
+                          alert('Your payment reference no is ' + response.reference +'\nYou will be redirect to a page. Please wait for some minutes...');
+                          window.location = `${type}_verify?reference=` + response.reference;
+                      },
+                      onClose: function(){
+                        window.location = "fund-wallet?transaction=call";
+                        alert('Transaction Cancelled');
+                    }
+                });
+                    handler.openIframe();
+                }
+
+                payWithPaystack(type, email, first_name, last_name);
+
+            });
+        });
+    </script>
 
 

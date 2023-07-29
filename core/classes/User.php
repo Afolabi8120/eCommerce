@@ -32,7 +32,7 @@
         }
 
         public function delete($table,$column,$value){
-        	$stmt = $this->pdo->prepare("DELETE FROM `$table` WHERE `$column` = :value");
+        	$stmt = $this->pdo->prepare("DELETE FROM :table WHERE :column = :value");
         	$stmt->bindParam(":table", $table, PDO::PARAM_STR);
         	$stmt->bindParam(":column", $column, PDO::PARAM_STR);
         	$stmt->bindParam(":value", $value, PDO::PARAM_STR);
@@ -211,6 +211,26 @@
 			}else{
 				return false;
 			}
+		}
+
+		public function addWalletBalance($customer_id,$transaction_code,$service_type,$amount,$total){
+			$stmt = $this->pdo->prepare("INSERT INTO tblwallet_fund (customer_id,transaction_code,service_type,amount,total) VALUES(:customer_id,:transaction_code,:service_type,:amount,:total)");
+			$stmt->bindParam(":transaction_code", $transaction_code, PDO::PARAM_STR);
+			$stmt->bindParam(":customer_id", $customer_id, PDO::PARAM_INT);
+			$stmt->bindParam(":service_type", $service_type, PDO::PARAM_STR);
+			$stmt->bindParam(":amount", $amount, PDO::PARAM_STR);
+			$stmt->bindParam(":total", $total, PDO::PARAM_STR);
+			$stmt->execute();
+
+			return true;
+		}
+
+		public function addToUserBalance($id,$amount){
+			$stmt = $this->pdo->prepare("UPDATE tblcustomer SET balance = balance + '$amount' WHERE id=:id");
+			$stmt->bindParam(":id", $id, PDO::PARAM_STR);
+			$stmt->execute();
+
+			return true;
 		}
 
 

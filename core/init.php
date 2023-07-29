@@ -39,6 +39,7 @@
     }
 
 	define("BASE_URL", "http://localhost/e-commerce/");
+    define("PAYMENT_KEY", "pk_test_cad279c5049ebec698669f5d2d765aee8a95630b");
 
 	date_default_timezone_set("Africa/Lagos");
     $h = date('G');
