@@ -17,7 +17,8 @@
      </div>
   <!--end wrapper-->
     <!-- JS Files-->
-    
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="../../../../../unpkg.com/ionicons%405.5.2/dist/ionicons/ionicons.esm.js"></script>
     <!--plugins-->
@@ -35,18 +36,6 @@
     <script src="../assets/plugins/OwlCarousel/js/owl.carousel2.thumbs.min.js"></script>
     <script src="../assets/js/product-details.js"></script>
     <script src="../assets/js/fontawesome.js"></script>
-
-    <script>
-     function getTotal(){
-
-        var amount = document.getElementById('amount').value;
-        var interest = parseInt(amount) * (0.05);
-        var total = parseInt(amount) + parseInt(interest);
-
-        document.getElementById('total').value = total;
-
-    }
-    </script>
 
   </body>
 </html>

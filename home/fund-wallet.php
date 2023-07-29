@@ -114,8 +114,17 @@
 
   <?php include('../includes/footer.php'); ?>
 
-  <script src="../assets/js/jquery.min.js"></script>
-  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script>
+     function getTotal(){
+
+        var amount = document.getElementById('amount').value;
+        var interest = parseInt(amount) * (0.05);
+        var total = parseInt(amount) + parseInt(interest);
+
+        document.getElementById('total').value = total;
+
+    }
+    </script>
   <script>
         $(document).ready(function() {
             $(document).on('click', '.payamount', function(e) {
